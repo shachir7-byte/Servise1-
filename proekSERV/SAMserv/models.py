@@ -4,9 +4,9 @@ class Client(models.Model):
     phone_number = models.CharField(max_length=20)
     email = models.CharField(max_length=100)
     last_name = models.CharField(max_length=25)
-    middle_name = models.CharField(max_length=25)
     first_name = models.CharField(max_length=25)
-    
+    middle_name = models.CharField(max_length=25, blank=True, null=True)  # ← теперь опционально
+
     def __str__(self):
         return f"{self.last_name} {self.first_name}"
 
@@ -17,13 +17,20 @@ class Employee(models.Model):
         ('admin', 'Администратор'),
     ]
     
+class Employee(models.Model):
+    POSITION_CHOICES = [
+        ('master', 'Мастер'),
+        ('cashier', 'Кассир'),
+        ('admin', 'Администратор'),
+    ]
+    
     last_name = models.CharField(max_length=25)
-    middle_name = models.CharField(max_length=25)
     first_name = models.CharField(max_length=25)
+    middle_name = models.CharField(max_length=25, blank=True, null=True)
     phone_number = models.CharField(max_length=20)
     position = models.CharField(max_length=50, choices=POSITION_CHOICES)
     access_type = models.CharField(max_length=20)
-    
+
     def __str__(self):
         return f"{self.last_name} {self.first_name} ({self.position})"
 
@@ -73,7 +80,7 @@ class Order(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     issue_description = models.TextField()
     diagnosis = models.TextField(blank=True)
-    estimated_cost = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    estimated_cost = models.DecimalField(max_digits=10, decimal_places=2 )
     
     def __str__(self):
         return f"Заказ #{self.id} - {self.client}"
@@ -103,4 +110,4 @@ class Payment(models.Model):
     def __str__(self):
         return f"Оплата заказа #{self.order.id}"
     
-    
+    #правки -   
