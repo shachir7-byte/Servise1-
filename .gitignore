@@ -1,3 +1,32 @@
 .venv
 __pycache__
 .vscode
+# Виртуальное окружение
+.venv/
+venv/
+env/
+
+# База данных SQLite
+*.sqlite3
+*.db
+
+# Кэш Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ОС
+.DS_Store
+Thumbs.db
+
+# Локальные настройки Django
+local_settings.py

@@ -24,4 +24,5 @@ def redirect_to_admin(request):
 urlpatterns = [
     path('', redirect_to_admin),
     path('admin/', admin.site.urls),
+    path('serv/', include('SAMserv.urls')),  # ← подключаем маршруты
 ]

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Список заказов{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Заказы</h1>
+    <ul>
+        {% for order in orders %}
+            <li>
+                <a href="{% url 'order-detail' order.id %}">
+                    Заказ #{{ order.id }} — {{ order.client }}
+                </a>
+                <span class="badge bg-secondary">{{ order.get_status_display }}</span>
+            </li>
+        {% empty %}
+            <li>Нет заказов</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
