@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Услуги{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Услуги</h1>
+    <ul class="list-group">
+        {% for s in services %}
+            <li class="list-group-item d-flex justify-content-between">
+                {{ s.service_name }}
+                <span>{{ s.service_cost }} ₽</span>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Нет услуг</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

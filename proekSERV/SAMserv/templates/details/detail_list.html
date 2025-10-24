@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Запчасти{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Запчасти</h1>
+    <ul class="list-group">
+        {% for d in details %}
+            <li class="list-group-item d-flex justify-content-between">
+                {{ d.part_name }} (остаток: {{ d.quantity }})
+                <span>{{ d.price }} ₽</span>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Нет запчастей</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
