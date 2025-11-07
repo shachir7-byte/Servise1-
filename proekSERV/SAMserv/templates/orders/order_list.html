@@ -1,9 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Список заказов{% endblock %}
 
 {% block content %}
 <div class="container">
+    <!-- Растянутое большое фото -->
+    <div class="mb-4">
+        <img src="{% static 'SAMserv/images/orders.jpg' %}" class="img-fluid w-100 rounded" alt="Заказы">
+    </div>
+
     <h1>Заказы</h1>
     <ul>
         {% for order in orders %}

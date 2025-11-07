@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load custom_filters %}
 {% block title %}Заказ #{{ order.id }} — {{ order.client.last_name }} {{ order.client.first_name }}{% endblock %}
 
 {% block content %}
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-8">  
         <div class="card shadow-sm mb-4">
             <div class="card-header bg-info text-white">
                 <h4 class="mb-0">

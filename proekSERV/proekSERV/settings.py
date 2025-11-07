@@ -9,8 +9,12 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
+# settings.py
 
 from pathlib import Path
+
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,7 +86,7 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+#   https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -101,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
+#   https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -115,9 +119,25 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# Указываем URL, по которому будут доступны статические файлы
+STATIC_URL = '/static/'
+
+# Определяем директории, где Django будет искать статические файлы в режиме разработки
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Путь к папке со статикой в корне проекта
+]
+
+# Указываем директорию, куда будет собираться вся статика для продакшена
+STATIC_ROOT = BASE_DIR / "staticfiles"  # Это папка, куда попадут файлы после collectstatic
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Путь к директории, где будут храниться загруженные пользователем файлы (фото, документы и т.д.)
+MEDIA_ROOT = BASE_DIR / "media"  # Например, создаст папку 'media' в корне проекта
+
+# URL, по которому будут доступны эти файлы в браузере
+MEDIA_URL = "/media/"

@@ -1,5 +1,14 @@
 from django.db import models
 
+
+class YourModel(models.Model):
+    name = models.CharField(max_length=100)
+    # Поле для загрузки изображений
+    photo = models.ImageField(upload_to='uploads/photos/')  # Файлы будут сохраняться в media/uploads/photos/
+    # Поле для загрузки любых файлов
+    document = models.FileField(upload_to='uploads/documents/')
+
+    
 class Client(models.Model):
     phone_number = models.CharField(max_length=20)
     email = models.CharField(max_length=100)

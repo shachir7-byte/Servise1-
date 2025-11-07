@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}Сотрудники{% endblock %}
+
 {% block content %}
 <div class="container">
+    <!-- квад изображение -->
+    <div class="mb-4 text-center">
+        <img src="{% static 'SAMserv/images/employees.jpg' %}" class="img-fluid rounded" style="max-width: 300px; height: auto;" alt="Сотрудники">
+    </div>
+
     <h1>Сотрудники</h1>
     <ul class="list-group">
         {% for emp in employees %}

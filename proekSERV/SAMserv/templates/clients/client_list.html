@@ -1,7 +1,15 @@
 {% extends 'base.html' %}
+{% load static %} {# Не забудьте загрузить static #}
+
 {% block title %}Клиенты{% endblock %}
+
 {% block content %}
 <div class="container">
+    <!--изображение -->
+    <div class="mb-4">
+        <img src="{% static 'SAMserv/images/clients.jpg' %}" class="img-fluid rounded" alt="Клиенты">
+    </div>
+
     <h1>Клиенты</h1>
     <ul class="list-group">
         {% for client in clients %}
