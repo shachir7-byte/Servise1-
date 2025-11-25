@@ -1,29 +1,57 @@
+
+<!--order_list-->
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Список заказов{% endblock %}
+{% block title %}Заказы{% endblock %}
 
 {% block content %}
-<div class="container">
-    <!-- Растянутое большое фото -->
-    <div class="mb-4">
-        <img src="{% static 'SAMserv/images/orders.jpg' %}" class="img-fluid w-100 rounded" alt="Заказы">
+<div class="container mt-4">
+    <!-- Фоновое изображение -->
+    <div class="position-relative mb-4" style="height: 200px; overflow: hidden; border-radius: 8px;">
+        <img src="{% static 'SAMserv/images/orders_bg.jpg' %}"  <!-- исправленный путь -->
+             class="w-100 h-100"
+             style="object-fit: cover;"
+             alt="Фон заказов">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25"></div>
+        <div class="position-absolute bottom-0 start-0 text-white p-3">
+            <h1 class="mb-0">Заказы</h1>
+        </div>
     </div>
 
-    <h1>Заказы</h1>
-    <ul>
+    <!-- Список заказов в карточках -->
+    <div class="row">
         {% for order in orders %}
-            <li>
-                <a href="{% url 'order-detail' order.id %}">
-                    Заказ #{{ order.id }} — {{ order.client }}
-                </a>
-                <span class="badge bg-secondary">{{ order.get_status_display }}</span>
-            </li>
+        <div class="col-md-6 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'order-detail' order.id %}" class="text-decoration-none">
+                            Заказ #{{ order.id }}
+                        </a>
+                    </h5>
+                    <p class="card-text mb-1"><strong>Клиент:</strong> {{ order.client }}</p>
+                    <p class="card-text mb-1"><strong>Устройство:</strong> {{ order.device }}</p>
+                    <p class="card-text mb-1"><strong>Статус:</strong> 
+                        <span class="badge 
+                            {% if order.status == 'new' %}bg-primary
+                            {% elif order.status == 'repair' %}bg-warning
+                            {% elif order.status == 'ready' %}bg-success
+                            {% else %}bg-secondary{% endif %}">
+                            {{ order.get_status_display }}
+                        </span>
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Создан: {{ order.created_date|date:"d.m.Y" }}</small>
+                </div>
+            </div>
+        </div>
         {% empty %}
-            <li>Нет заказов</li>
+        <div class="col-12">
+            <div class="alert alert-info">Нет заказов</div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
-
-<!--order_list-->

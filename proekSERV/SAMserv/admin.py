@@ -3,8 +3,20 @@ from .models import Client, Employee, Device, Service, Detail, Order, Payment, O
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ['last_name', 'first_name', 'phone_number', 'email']
+    list_display = ['last_name', 'first_name', 'phone_number', 'email', 'photo_preview']
     search_fields = ['last_name', 'first_name', 'phone_number']
+
+    # Метод для отображения миниатюры
+    def photo_preview(self, obj):
+        if obj.photo:
+            return f'<img src="{obj.photo.url}" style="max-height: 50px; max-width: 50px;" />'
+        return "Нет фото"
+    photo_preview.allow_tags = True
+    photo_preview.short_description = 'Фото'  # Заголовок колонки
+
+    # Добавьте поле photo в редактируемую форму (опционально, но рекомендуется)
+    # Если хотите, чтобы фото было видно и при редактировании клиента
+    # fields = ['phone_number', 'email', 'last_name', 'first_name', 'middle_name', 'photo']
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):

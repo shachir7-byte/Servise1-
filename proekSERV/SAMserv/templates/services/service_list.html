@@ -1,18 +1,41 @@
+
+<!--service_list-->
+
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}Услуги{% endblock %}
+
 {% block content %}
-<div class="container">
-    <h1>Услуги</h1>
-    <ul class="list-group">
+<div class="container mt-4">
+    <!-- Фоновое изображение -->
+    <div class="position-relative mb-4" style="height: 200px; overflow: hidden; border-radius: 8px;">
+        <img src="{% static 'SAMserv/images/services_bg.jpg' %}"
+             class="w-100 h-100"
+             style="object-fit: cover;"
+             alt="Услуги">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25"></div>
+        <div class="position-absolute bottom-0 start-0 text-white p-3">
+            <h1 class="mb-0">Услуги</h1>
+        </div>
+    </div>
+
+    <!-- Список услуг -->
+    <div class="row">
         {% for s in services %}
-            <li class="list-group-item d-flex justify-content-between">
-                {{ s.service_name }}
-                <span>{{ s.service_cost }} ₽</span>
-            </li>
+        <div class="col-md-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ s.service_name }}</h5>
+                    <p class="card-text fs-4 text-primary">{{ s.service_cost }} ₽</p>
+                </div>
+            </div>
+        </div>
         {% empty %}
-            <li class="list-group-item">Нет услуг</li>
+        <div class="col-12">
+            <div class="alert alert-info">Нет услуг</div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
-<!--service_list-->

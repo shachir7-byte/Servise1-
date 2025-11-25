@@ -1,33 +1,39 @@
 {% extends 'base.html' %}
-{% load static %} {# Не забудьте загрузить static #}
+{% load static %}
 
 {% block title %}Клиенты{% endblock %}
 
 {% block content %}
-<div class="container">
-    <!--изображение -->
-    <div class="mb-4">
-    {% if client.photo %}
-        <img src="{{ client.photo.url }}" class="img-fluid rounded" alt="{{ client.last_name }} {{ client.first_name }}">
-    {% else %}
-        <img src="{% static 'SAMserv/images/clients.jpg' %}" class="img-fluid rounded" alt="Клиенты">
-    {% endif %}
-</div>
+<div class="container mt-4">
+    <!-- Карточка с фоновым изображением -->
+    <div class="card shadow-sm">
+        <!-- Фоновое изображение (заглушка) -->
+        <div class="card-header bg-primary text-white" style="background-image: url('{% static 'SAMserv/images/clients.jpg' %}'); background-size: cover; background-position: center;">
+            <h1 class="mb-0">Клиенты</h1>
+        </div>
 
-    <h1>Клиенты</h1>
-    <ul class="list-group">
-        {% for client in clients %}
-    <li class="list-group-item">
-        {% if client.photo %}
-            <img src="{{ client.photo.url }}" class="me-3" style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%;" alt="{{ client.last_name }} {{ client.first_name }}">
-        {% endif %}
-        {{ client.last_name }} {{ client.first_name }}
-        <span class="text-muted">({{ client.phone_number }})</span>
-    </li>
-{% empty %}
-    <li class="list-group-item">Нет клиентов</li>
-{% endfor %}
-    </ul>
+        <div class="card-body">
+            <ul class="list-group">
+                {% for client in clients %}
+                    <li class="list-group-item d-flex align-items-center">
+                        {% if client.photo %}
+                            <!-- Аватар клиента -->
+                            <img src="{{ client.photo.url }}" class="me-3" style="width: 50px; height: 50px; border-radius: 50%;" alt="{{ client.last_name }} {{ client.first_name }}">
+                        {% else %}
+                            <!-- Заглушка для аватара -->
+                            <div class="bg-secondary rounded-circle me-3" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
+                                <span class="text-white">👤</span>
+                            </div>
+                        {% endif %}
+                        {{ client.last_name }} {{ client.first_name }}
+                        <span class="text-muted ms-auto">({{ client.phone_number }})</span>
+                    </li>
+                {% empty %}
+                    <li class="list-group-item">Нет клиентов</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 </div>
 {% endblock %}
 <!--client\proekSERV-->

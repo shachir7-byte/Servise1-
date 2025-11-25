@@ -107,9 +107,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 #   https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-ru'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
+
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 USE_I18N = True
 
@@ -124,7 +126,8 @@ STATIC_URL = '/static/'
 
 # Определяем директории, где Django будет искать статические файлы в режиме разработки
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Путь к папке со статикой в корне проекта
+    BASE_DIR / "static",  #  папка
+    
 ]
 
 # Указываем директорию, куда будет собираться вся статика для продакшена
