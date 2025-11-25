@@ -43,3 +43,5 @@ def service_list(request):
 def detail_list(request):
     details = Detail.objects.all()
     return render(request, 'details/detail_list.html', {'details': details})
+
+#views/samserv

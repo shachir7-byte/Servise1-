@@ -9,3 +9,5 @@ def multiply(value, arg):
         return float(value) * float(arg)
     except (ValueError, TypeError):
         return 0  # или вернуть None, или бросить исключение
+    
+    #custom_filters\templatetags

@@ -47,3 +47,5 @@ class OrderAdmin(admin.ModelAdmin):
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ['order', 'payment_method', 'amount', 'payment_date']
     list_filter = ['payment_method', 'payment_date']
+
+#admin/samserv

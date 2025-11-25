@@ -7,19 +7,27 @@
 <div class="container">
     <!--изображение -->
     <div class="mb-4">
+    {% if client.photo %}
+        <img src="{{ client.photo.url }}" class="img-fluid rounded" alt="{{ client.last_name }} {{ client.first_name }}">
+    {% else %}
         <img src="{% static 'SAMserv/images/clients.jpg' %}" class="img-fluid rounded" alt="Клиенты">
-    </div>
+    {% endif %}
+</div>
 
     <h1>Клиенты</h1>
     <ul class="list-group">
         {% for client in clients %}
-            <li class="list-group-item">
-                {{ client.last_name }} {{ client.first_name }}
-                <span class="text-muted">({{ client.phone_number }})</span>
-            </li>
-        {% empty %}
-            <li class="list-group-item">Нет клиентов</li>
-        {% endfor %}
+    <li class="list-group-item">
+        {% if client.photo %}
+            <img src="{{ client.photo.url }}" class="me-3" style="width: 60px; height: 60px; object-fit: cover; border-radius: 50%;" alt="{{ client.last_name }} {{ client.first_name }}">
+        {% endif %}
+        {{ client.last_name }} {{ client.first_name }}
+        <span class="text-muted">({{ client.phone_number }})</span>
+    </li>
+{% empty %}
+    <li class="list-group-item">Нет клиентов</li>
+{% endfor %}
     </ul>
 </div>
 {% endblock %}
+<!--client\proekSERV-->

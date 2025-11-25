@@ -1,5 +1,18 @@
 from django.db import models
 
+# ... остальные импорты ...
+
+class Client(models.Model):
+    # ... существующие поля ...
+    photo = models.ImageField(upload_to='clients/', blank=True, null=True)
+
+class Employee(models.Model):
+    # ... существующие поля ...
+    photo = models.ImageField(upload_to='employees/', blank=True, null=True)
+
+class Device(models.Model):
+    # ... существующие поля ...
+    photo = models.ImageField(upload_to='devices/', blank=True, null=True)
 
 class YourModel(models.Model):
     name = models.CharField(max_length=100)
@@ -111,3 +124,5 @@ class Payment(models.Model):
     
     def __str__(self):
         return f"Оплата заказа #{self.order.id}"
+    
+    #models/samserv
