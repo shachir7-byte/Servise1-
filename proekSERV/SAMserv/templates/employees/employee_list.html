@@ -1,3 +1,5 @@
+<!--employee_list.html -->
+
 {% extends 'base.html' %}
 {% load static %}
 
@@ -5,21 +7,44 @@
 
 {% block content %}
 <div class="container">
-    <!-- квад изображение -->
-    <div class="mb-4 text-center">
-        <img src="{% static 'SAMserv/images/employees.jpg' %}" class="img-fluid rounded" style="max-width: 300px; height: auto;" alt="Сотрудники">
+    <!-- Фоновое изображение -->
+    <div class="position-relative mb-4" style="height: 200px; overflow: hidden; border-radius: 8px;">
+        <img src="{% static 'SAMserv/images/employees_bg.jpg' %}"
+             class="w-100 h-100"
+             style="object-fit: cover;"
+             alt="Сотрудники">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25"></div>
+        <div class="position-absolute bottom-0 start-0 text-white p-3">
+            <h1 class="mb-0">Сотрудники</h1>
+        </div>
     </div>
 
-    <h1>Сотрудники</h1>
-    <ul class="list-group">
+    <!-- Карточки сотрудников -->
+    <div class="row">
         {% for emp in employees %}
-            <li class="list-group-item">
-                {{ emp.last_name }} {{ emp.first_name }} — {{ emp.get_position_display }}
-            </li>
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    {% if emp.photo %}
+                        <img src="{{ emp.photo.url }}" class="rounded-circle mb-3" style="width: 80px; height: 80px; object-fit: cover;" alt="{{ emp.last_name }} {{ emp.first_name }}">
+                    {% else %}
+                        <div class="bg-secondary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-user-tie text-white fs-4"></i>
+                        </div>
+                    {% endif %}
+                    <h5 class="card-title">{{ emp.last_name }} {{ emp.first_name }}</h5>
+                    <p class="card-text">
+                        <span class="badge bg-primary">{{ emp.get_position_display }}</span>
+                    </p>
+                    <p class="card-text text-muted">{{ emp.phone_number }}</p>
+                </div>
+            </div>
+        </div>
         {% empty %}
-            <li class="list-group-item">Нет сотрудников</li>
+        <div class="col-12">
+            <div class="alert alert-info text-center">Нет сотрудников</div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
-<!--employee_list-->

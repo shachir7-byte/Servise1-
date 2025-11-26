@@ -1,17 +1,46 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}Устройства{% endblock %}
+
 {% block content %}
 <div class="container">
-    <h1>Устройства</h1>
-    <ul class="list-group">
+    <!-- Фоновое изображение -->
+    <div class="position-relative mb-4" style="height: 200px; overflow: hidden; border-radius: 8px;">
+        <img src="{% static 'SAMserv/images/devices_bg.jpg' %}"
+             class="w-100 h-100"
+             style="object-fit: cover;"
+             alt="Устройства">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25"></div>
+        <div class="position-absolute bottom-0 start-0 text-white p-3">
+            <h1 class="mb-0">Устройства</h1>
+        </div>
+    </div>
+
+    <!-- Карточки устройств -->
+    <div class="row">
         {% for dev in devices %}
-            <li class="list-group-item">
-                {{ dev.brand }} {{ dev.model }} ({{ dev.serial_number }})
-            </li>
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    {% if dev.photo %}
+                        <img src="{{ dev.photo.url }}" class="rounded mb-3" style="width: 100px; height: 100px; object-fit: cover;" alt="{{ dev.brand }} {{ dev.model }}">
+                    {% else %}
+                        <div class="bg-secondary rounded mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 100px; height: 100px;">
+                            <i class="fas fa-laptop text-white fs-2"></i>
+                        </div>
+                    {% endif %}
+                    <h5 class="card-title">{{ dev.brand }} {{ dev.model }}</h5>
+                    <p class="card-text text-muted mb-1">Серийник: {{ dev.serial_number }}</p>
+                    <p class="card-text small text-truncate" title="{{ dev.appearance }}">{{ dev.appearance|truncatewords:10 }}</p>
+                </div>
+            </div>
+        </div>
         {% empty %}
-            <li class="list-group-item">Нет устройств</li>
+        <div class="col-12">
+            <div class="alert alert-info text-center">Нет устройств</div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
-<!--device_list-->

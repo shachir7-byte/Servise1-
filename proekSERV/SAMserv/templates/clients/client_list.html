@@ -4,36 +4,43 @@
 {% block title %}Клиенты{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <!-- Карточка с фоновым изображением -->
-    <div class="card shadow-sm">
-        <!-- Фоновое изображение (заглушка) -->
-        <div class="card-header bg-primary text-white" style="background-image: url('{% static 'SAMserv/images/clients.jpg' %}'); background-size: cover; background-position: center;">
+<div class="container">
+    <!-- Фоновое изображение -->
+    <div class="position-relative mb-4" style="height: 200px; overflow: hidden; border-radius: 8px;">
+        <img src="{% static 'SAMserv/images/clients.jpg' %}"
+             class="w-100 h-100"
+             style="object-fit: cover;"
+             alt="Клиенты">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25"></div>
+        <div class="position-absolute bottom-0 start-0 text-white p-3">
             <h1 class="mb-0">Клиенты</h1>
         </div>
+    </div>
 
-        <div class="card-body">
-            <ul class="list-group">
-                {% for client in clients %}
-                    <li class="list-group-item d-flex align-items-center">
-                        {% if client.photo %}
-                            <!-- Аватар клиента -->
-                            <img src="{{ client.photo.url }}" class="me-3" style="width: 50px; height: 50px; border-radius: 50%;" alt="{{ client.last_name }} {{ client.first_name }}">
-                        {% else %}
-                            <!-- Заглушка для аватара -->
-                            <div class="bg-secondary rounded-circle me-3" style="width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;">
-                                <span class="text-white">👤</span>
-                            </div>
-                        {% endif %}
-                        {{ client.last_name }} {{ client.first_name }}
-                        <span class="text-muted ms-auto">({{ client.phone_number }})</span>
-                    </li>
-                {% empty %}
-                    <li class="list-group-item">Нет клиентов</li>
-                {% endfor %}
-            </ul>
+    <!-- Карточки клиентов -->
+    <div class="row">
+        {% for client in clients %}
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    {% if client.photo %}
+                        <img src="{{ client.photo.url }}" class="rounded-circle mb-3" style="width: 80px; height: 80px; object-fit: cover;" alt="{{ client.last_name }} {{ client.first_name }}">
+                    {% else %}
+                        <div class="bg-secondary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                            <i class="fas fa-user text-white fs-4"></i>
+                        </div>
+                    {% endif %}
+                    <h5 class="card-title">{{ client.last_name }} {{ client.first_name }}</h5>
+                    <p class="card-text text-muted mb-1">{{ client.phone_number }}</p>
+                    <p class="card-text text-muted">{{ client.email }}</p>
+                </div>
+            </div>
         </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">Нет клиентов</div>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
-<!--client\proekSERV-->

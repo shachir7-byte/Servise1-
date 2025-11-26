@@ -1,18 +1,45 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}Запчасти{% endblock %}
+
 {% block content %}
 <div class="container">
-    <h1>Запчасти</h1>
-    <ul class="list-group">
+    <!-- Фоновое изображение -->
+    <div class="position-relative mb-4" style="height: 200px; overflow: hidden; border-radius: 8px;">
+        <img src="{% static 'SAMserv/images/details_bg.jpg' %}"
+             class="w-100 h-100"
+             style="object-fit: cover;"
+             alt="Запчасти">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-25"></div>
+        <div class="position-absolute bottom-0 start-0 text-white p-3">
+            <h1 class="mb-0">Запчасти</h1>
+        </div>
+    </div>
+
+    <!-- Карточки запчастей -->
+    <div class="row">
         {% for d in details %}
-            <li class="list-group-item d-flex justify-content-between">
-                {{ d.part_name }} (остаток: {{ d.quantity }})
-                <span>{{ d.price }} ₽</span>
-            </li>
+        <div class="col-md-6 col-lg-4 mb-3">
+            <div class="card h-100">
+                <div class="card-body">
+                    <h5 class="card-title">{{ d.part_name }}</h5>
+                    <p class="card-text fs-4 text-primary mb-2">{{ d.price }} ₽</p>
+                    <p class="card-text mb-1">
+                        <span class="badge {% if d.quantity > 10 %}bg-success{% elif d.quantity > 0 %}bg-warning{% else %}bg-danger{% endif %}">
+                            Остаток: {{ d.quantity }}
+                        </span>
+                    </p>
+                    <p class="card-text small text-muted mb-1">Поставщик: {{ d.supplier }}</p>
+                    <p class="card-text small text-muted">Источник: {{ d.part_source }}</p>
+                </div>
+            </div>
+        </div>
         {% empty %}
-            <li class="list-group-item">Нет запчастей</li>
+        <div class="col-12">
+            <div class="alert alert-info text-center">Нет запчастей</div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 </div>
 {% endblock %}
-<!--detail_list-->
