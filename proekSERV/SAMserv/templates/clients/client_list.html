@@ -1,3 +1,4 @@
+<!--client_list.html-->
 {% extends 'base.html' %}
 {% load static %}
 
@@ -21,7 +22,7 @@
     <div class="row">
         {% for client in clients %}
         <div class="col-md-6 col-lg-4 mb-3">
-            <div class="card h-100">
+            <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body text-center">
                     {% if client.photo %}
                         <img src="{{ client.photo.url }}" class="rounded-circle mb-3" style="width: 80px; height: 80px; object-fit: cover;" alt="{{ client.last_name }} {{ client.first_name }}">
@@ -30,9 +31,9 @@
                             <i class="fas fa-user text-white fs-4"></i>
                         </div>
                     {% endif %}
-                    <h5 class="card-title">{{ client.last_name }} {{ client.first_name }}</h5>
-                    <p class="card-text text-muted mb-1">{{ client.phone_number }}</p>
-                    <p class="card-text text-muted">{{ client.email }}</p>
+                    <h5 class="card-title text-dark" style="font-weight: 500;">{{ client.last_name }} {{ client.first_name }}</h5>
+                    <p class="card-text text-dark mb-1" style="font-weight: 500;">{{ client.phone_number }}</p>
+                    <p class="card-text text-dark" style="font-weight: 500;">{{ client.email }}</p>
                 </div>
             </div>
         </div>

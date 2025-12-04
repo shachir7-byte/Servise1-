@@ -1,5 +1,4 @@
-
-<!--order_list-->
+<!--order_list.html-->
 {% extends 'base.html' %}
 {% load static %}
 
@@ -9,7 +8,7 @@
 <div class="container mt-4">
     <!-- Фоновое изображение -->
     <div class="position-relative mb-4" style="height: 200px; overflow: hidden; border-radius: 8px;">
-        <img src="{% static 'SAMserv/images/orders_bg.jpg' %}"  <!-- исправленный путь -->
+        <img src="{% static 'SAMserv/images/orders_bg.jpg' %}"
              class="w-100 h-100"
              style="object-fit: cover;"
              alt="Фон заказов">
@@ -23,27 +22,23 @@
     <div class="row">
         {% for order in orders %}
         <div class="col-md-6 mb-3">
-            <div class="card h-100">
+            <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">
-                        <a href="{% url 'order-detail' order.id %}" class="text-decoration-none">
+                        <a href="{% url 'order-detail' order.id %}" class="text-decoration-none text-dark" style="font-weight: 500;">
                             Заказ #{{ order.id }}
                         </a>
                     </h5>
-                    <p class="card-text mb-1"><strong>Клиент:</strong> {{ order.client }}</p>
-                    <p class="card-text mb-1"><strong>Устройство:</strong> {{ order.device }}</p>
-                    <p class="card-text mb-1"><strong>Статус:</strong> 
-                        <span class="badge 
-                            {% if order.status == 'new' %}bg-primary
-                            {% elif order.status == 'repair' %}bg-warning
-                            {% elif order.status == 'ready' %}bg-success
-                            {% else %}bg-secondary{% endif %}">
+                    <p class="card-text mb-1"><strong class="text-dark" style="font-weight: 500;">Клиент:</strong> <span class="text-dark" style="font-weight: 500;">{{ order.client }}</span></p>
+                    <p class="card-text mb-1"><strong class="text-dark" style="font-weight: 500;">Устройство:</strong> <span class="text-dark" style="font-weight: 500;">{{ order.device }}</span></p>
+                    <p class="card-text mb-1"><strong class="text-dark" style="font-weight: 500;">Статус:</strong>
+                        <span class="badge border border-dark text-dark" style="background-color: transparent; font-weight: 500;">
                             {{ order.get_status_display }}
                         </span>
                     </p>
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Создан: {{ order.created_date|date:"d.m.Y" }}</small>
+                <div class="card-footer bg-transparent">
+                    <small class="text-muted" style="font-weight: 500;">Создан: {{ order.created_date|date:"d.m.Y" }}</small>
                 </div>
             </div>
         </div>

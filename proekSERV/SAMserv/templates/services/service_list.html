@@ -1,3 +1,4 @@
+<!--service_list.html-->
 {% extends 'base.html' %}
 {% load static %}
 
@@ -21,13 +22,19 @@
     <div class="row">
         {% for s in services %}
         <div class="col-md-6 col-lg-4 mb-3">
-            <div class="card h-100">
+            <div class="card h-100 border-0 shadow-sm">
                 <div class="card-body text-center">
-                    <div class="bg-primary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
-                        <i class="fas fa-wrench text-white fs-3"></i>
+                    <div class="bg-secondary rounded-circle mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 80px; height: 80px;">
+                        {% if s.service_name == 'Поклейка защитного стекла' %}
+                            <i class="fas fa-shield-alt text-white fs-3"></i>
+                        {% elif s.service_name == 'Ребол аудио кодека' %}
+                            <i class="fas fa-headphones text-white fs-3"></i>
+                        {% else %}
+                            <i class="fas fa-wrench text-white fs-3"></i>
+                        {% endif %}
                     </div>
-                    <h5 class="card-title">{{ s.service_name }}</h5>
-                    <p class="card-text fs-3 text-primary fw-bold">{{ s.service_cost }} ₽</p>
+                    <h5 class="card-title text-dark" style="font-weight: 500;">{{ s.service_name }}</h5>
+                    <p class="card-text fs-4 text-dark fw-bold" style="font-weight: 600;">{{ s.service_cost }} ₽</p>
                 </div>
             </div>
         </div>
