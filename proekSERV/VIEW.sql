@@ -1,3 +1,5 @@
+--D:\vsCODE\proektiki\Servise1-\proekSERV\VIEW.sql
+
 -- database: /path/to/database.db
 -- VIEW 1: Сводка по заказам (клиент + устройство + статус)
 CREATE VIEW IF NOT EXISTS order_summary AS

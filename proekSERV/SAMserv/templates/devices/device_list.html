@@ -18,6 +18,34 @@
         </div>
     </div>
 
+    <!-- Форма поиска и фильтрации -->
+    <form method="get" class="mb-4">
+        <div class="row g-3">
+            <div class="col-md-4">
+                <input type="text" name="q" class="form-control" placeholder="Поиск по бренду, модели или серийнику" value="{{ query }}">
+            </div>
+            <div class="col-md-3">
+                <select name="brand" class="form-control">
+                    <option value="">Все бренды</option>
+                    {% for brand in brands %}
+                        <option value="{{ brand }}" {% if brand == selected_brand %}selected{% endif %}>{{ brand }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <select name="model" class="form-control">
+                    <option value="">Все модели</option>
+                    {% for model in models %}
+                        <option value="{{ model }}" {% if model == selected_model %}selected{% endif %}>{{ model }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn btn-primary w-100">Применить</button>
+            </div>
+        </div>
+    </form>
+
     <!-- Карточки устройств -->
     <div class="row">
         {% for dev in devices %}

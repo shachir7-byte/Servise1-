@@ -1,8 +1,6 @@
+#SAMserv/apps.py
 from django.apps import AppConfig
-
 
 class SamservConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
     name = 'SAMserv'
-
-#apps/samserv

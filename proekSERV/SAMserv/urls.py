@@ -22,5 +22,3 @@ urlpatterns = [
     # Запчасти
     path('details/', views.detail_list, name='detail-list'),
 ]
-
-#urls/samserv
