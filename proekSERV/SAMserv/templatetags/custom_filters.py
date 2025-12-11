@@ -1,13 +1,12 @@
+# SAMserv/templatetags/custom_filters.py
 from django import template
 
 register = template.Library()
 
 @register.filter
 def multiply(value, arg):
-    """Умножает значение на аргумент."""
+    """Умножает два числа (для цены × количество)"""
     try:
         return float(value) * float(arg)
     except (ValueError, TypeError):
-        return 0  # или вернуть None, или бросить исключение
-    
-    #custom_filters\templatetags
+        return 0
