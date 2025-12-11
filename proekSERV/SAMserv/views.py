@@ -1,6 +1,5 @@
 # SAMserv/views.py
-# САМЫЙ ПРОСТОЙ И РАБОЧИЙ ВАРИАНТ ДЛЯ 3 КУРСА
-# Поиск работает и на "Иван", и на "иван", и на "ИВАН" без всяких COLIATE и Lower()
+
 
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Q

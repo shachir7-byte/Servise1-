@@ -30,3 +30,6 @@ Thumbs.db
 
 # Локальные настройки Django
 local_settings.py
+# paroli
+.env
+.env.local
